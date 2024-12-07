@@ -49,7 +49,7 @@ The central question we are interested in is: **How average rating could be dete
    - 0 is likely indicate that no ratings is given, so it currently doesn't provide meaningful information about user preferences.
      
 3. Before proceeding to any column operations, we want to first deal with missing values:
-   - we start by examing which columns contains missing values
+   - we start by examing which columns contains missing values.
    - then we fill missing values in columns relevant to our analysis, including
      - `nutritions`
      - `rating`
@@ -57,30 +57,61 @@ The central question we are interested in is: **How average rating could be dete
      - `n_steps`
 
 4. Among all columns relevant to our anlysis, only `rating` contains missing value.
-- We decided to use listwise imputation and probablistic imputation, see $\textbf{Imputation}$ section for justification
+- We decided to use listwise imputation and probablistic imputation, see $\textbf{Imputation}$ section for justification.
   - listwise imputation: we drop all receipe that does not receive any rating.
-  - probalistic imputation, we fill missing value in `rating` by drawing random sample from all ratings received by that receipe
+  - probalistic imputation, we fill missing value in `rating` by drawing random sample from all ratings received by that receipe.
 
+5. We will measure a recipe's popularity by its average rating, so we created a new column that record average rating per recipe.
+   
+6. Previously, we notice that calories are stored in the `nutrition` column.
+   - `nutrition` column contains values that looks like lisst, but they are actually strings.
+     - `[calories (#), total fat (PDV), sugar (PDV), sodium (PDV), protein (PDV), saturated fat (PDV), carbohydrates (PDV)]`
+   - so we need to extract these information from the list-like string.
+   - after that, we create columns that record them per receipe.
+  
+7. We define a new categorical column named 'Time Involved'
+   - we categorize recipes into three different categories based on their preparation time
+     - `less than 30 minutes`
+     - `4 hours or less`
+     - `1-day-or-more`
 
+8. from now on, we will only focus on relevant columns, including
+   -`averge_rating`
+   - `minutes`
+   - `time involved`
+   - `calories`
+   - `n_steps`
+   - `total fat(PDV)`
+   - `sugar(PDV)`
+   - `sodium(PDV)`
+   - `protein(PDV)`
+   - `saturated fat(PDV)`
+   - `carbohydrates(PDV)`
 
-
-
+- more explanation on `recipes`
+  - each row represent a particular recipe, there are 83782 recipes in total
+  - each column except `average_rating` is a feature that we are used to predict `average_rating`
 
 Below is the head of our league_clean dataframe.
 
 
 
+### Part II: Univariate Analysis
+#### 1. Difficulty Level
+1. We are interested in difficulty level of receips. Specifically, we wonder if recipes posted are complex in general.
+2. We think two features can reflect the difficulty level, time and n_steps.
+   - Intuitively, this makes sense because
+     - the more complex a recipe is, the longer time it takes to prepare.
+     - the more complex a recipe is, the more steps it involves.
+4. To get some insights, we decided to draw two histograms to get some insights.
+   - Histograms of Time
+   - Histograms of n_steps
+
+#### 1) Preparation Time
+we start with summary statistics, and note that
+ - recipes taking less than 20 minutes to prepare is in first quartile
+ - recipes taking 20 to 35  minutes to prepare is in second quartile
+ - recipes taking 35 to 65 minutes to prepare is in third quartile
+ - receipes taking longer than 65 minutes to prepare is in the forth quartile
 
 
-## Objective
-- we aim to identify key attributes that make recipes healthier and more popular. 
-- Our findings could then help food bloggers and restaurants develop recipes that align with these characteristics, ultimately making their new offering healthier and more popular.
-
-## Tools and Techniques
-- **Python** with **Pandas** for data analysis.
-- **Data visualization** to identify trends and correlations.
-- **Statistical analysis** to interpret user ratings.
-
-## Key Findings (placeholder)
-- Trends in recipe types that tend to have higher ratings.
-- Relationships between ingredients or cooking techniques and user satisfaction.
