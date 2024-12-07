@@ -114,6 +114,13 @@ we start with summary statistics, and note this a good way to distinguish betwee
  - recipes taking 35 to 65 minutes to prepare is in third quartile
  - receipes taking longer than 65 minutes to prepare is in the forth quartile
 
+<iframe
+  src="assets/recipe_prep_time.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 - Findings:
   - The graph above shows that the majority of recipes take less than 65 minutes.
 
@@ -123,6 +130,20 @@ we continue with analyzing the distribution of steps taken.
  - recipes taking 7-9 steps to prepare is in second quartile
  - recipes taking 11-13 steps to prepare is in third quartile
  - receipes taking more than 14 steps to prepare is in the forth quartile
+
+<iframe
+  src="assets/num_of_steps.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+<iframe
+  src="assets/recipe_hist.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 - Findings:
   - Combining two graphs above, we see that most recipes are not much complex, and involves fewer than 14 steps, with very few exceeding 20 steps.
@@ -134,7 +155,14 @@ we continue with analyzing the distribution of steps taken.
 1. We're also interested in calories of recipes. Specifically, we wonder if
    - there are more recipes associated with high calories, or
    - most recipes tend to have low calories.
-  
+
+<iframe
+  src="assets/hist_calories.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 - Findings:
   - The histogram for recipe calories shows that the majority of recipes have calorie counts below 1000, with a steep decline in frequency beyond this point.
 
@@ -156,25 +184,76 @@ we continue with analyzing the distribution of steps taken.
   - Average_Rating vs. calorie
 
 #### Complexity
+
+<iframe
+  src="assets/num_steps_vs_ave_rate.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 - The scatterplot shows that the number of steps does not have a strong visible correlation with the average rating.
 - However, if we take a closer look at how ratings differ by different step ranges, we observe that
   - receips with 6 steps or fewer or more than 14 steps tend to have higher average ratings
 
+<iframe
+  src="assets/ave_rate_by_steps.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
-    
+<iframe
+  src="assets/prep_time_vs_ave_rate.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+<iframe
+  src="assets/ave_rate_by_time_inv.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 - Similarly, the scatterplot shows that preparation time does not have a strong visible correlation with the average rating.
 - However, if we take a closer look at how ratings differ by different step ranges, we observe that
   - receips with less preparation time tend to have higher average ratings
 
+#### Energy Level
+
+<iframe
+  src="assets/ave_rate_by_cal.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 - Based on graph, we observe that low-calorie recipes tend to receive slightly higher average ratings compared to medium- and high-calorie recipes. This implies a preference for lower-calorie recipes, possibly due to perceived health benefits.
 
 #### Recipe Ingredients
+
 - Upon our investigation of original dataset, we noticed one of common tags is `low-protein`.
 - Therefore, we want to see if average rating differs by its protein(PDV)
+
+<iframe
+  src="assets/protein_vs_ave_rate.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 - The scatterplot shows that protein(PDV) does not have a strong visible correlation with the average rating.
 - However, if we take a closer look at how ratings differ by ranges of protein(PDV), we observe that
   - receips with light protein level and moderate protein level tend to receive higher average ratings
+ 
+<iframe
+  src="assets/ave_rate_by_cal_box.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
  
 ### Part IV:Interesting Aggregates
 Findings:
