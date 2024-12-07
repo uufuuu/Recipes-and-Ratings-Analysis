@@ -1,10 +1,18 @@
 # Recipes and Ratings Analysis
-authors: Becca Fu(beccafuu@umich.edu), Yuchen(Wayne) Yang(siriusyc@umich.edu)
+Authors: Becca Fu(beccafuu@umich.edu), Yuchen(Wayne) Yang(siriusyc@umich.edu)
 
-## Project Overview
-This project is part of the Practical Data Science Course portfolio, focusing on analyzing the "Recipes and Ratings" dataset. 
+## Introduction
+## General Introduction
+-The "Recipes and Ratings" dataset provides a comprehensive collection of information about recipes and user interactions with those recipes, based on the data collected from [food.com](https://www.food.com).
+-It is split into two main CSV files.
+-The "recipes" data set contained metadata about recipes, providing a complete snapshot pf the recipes and their attributes, making it essential for understanding what each recipe offers. It includes information like recipes names, preparation times, tags, nutritional content, number of steps, and user-contributed descriptions.
+-The "interactions" data set captures user interactions with recipes, including ratings and reviews. The data links users to the recipes they reviewed, allowing for an analysis of trends in user feedback and recipe popularity.
 
-## Dataset Description
+The central question we are interested in is: **How average rating could be deterimined by key attributes of a recipe?**
+-This question is important because it enables us to identify which recipe characteristics—such as preparation time, nutritional content, or number of preparation steps—are most predictive of user satisfaction. Such insights are valuable for culinary enthusiasts, food bloggers, and platforms like food.com to optimize recipes and improve user engagement.
+
+
+## Dataset Details
 The dataset includes:
 - **Recipes**: Information such as ingredients, cooking time, and instructions.
 - **Ratings**: User feedback on different recipes, providing insights into user preferences and recipe quality.
