@@ -107,7 +107,7 @@ Below is the head of our league_clean dataframe.
    - Histograms of Time
    - Histograms of n_steps
 
-#### 1) Preparation Time
+##### 1) Preparation Time
 we start with summary statistics, and note this a good way to distinguish between recipe's preparation time:
  - recipes taking less than 20 minutes to prepare is in first quartile
  - recipes taking 20 to 35  minutes to prepare is in second quartile
@@ -117,6 +117,28 @@ we start with summary statistics, and note this a good way to distinguish betwee
 - Findings:
   - The graph above shows that the majority of recipes take less than 65 minutes.
 
-#### 2) Number of Steps
+##### 2) Number of Steps
+we continue with analyzing the distribution of steps taken.
+ - recipes taking within 6 steps to prepare is in first quartile
+ - recipes taking 7-9 steps to prepare is in second quartile
+ - recipes taking 11-13 steps to prepare is in third quartile
+ - receipes taking more than 14 steps to prepare is in the forth quartile
 
+- Findings:
+  - Combining two graphs above, we see that most recipes are not much complex, and involves fewer than 14 steps, with very few exceeding 20 steps.
+
+- Conclusion:
+  - These patterns indicate that recipes are generally simple and accessible, suggesting that they are not overly time-consuming and complex in terms of number of steps.
+ 
+#### 2. Energy Provided: Calories
+1. We're also interested in calories of recipes. Specifically, we wonder if
+   - there are more recipes associated with high calories, or
+   - most recipes tend to have low calories
+  
+- Findings:
+  - The histogram for recipe calories shows that the majority of recipes have calorie counts below 1000, with a steep decline in frequency beyond this point.
+
+- Conclusion:
+  -  It appears that most recipes tend to have lower calories. The distribution is heavily skewed to the left, with the highest frequency of recipes having calorie counts below 1000.
+  -   This suggests that the majority of recipes are designed to be moderate in calorie content rather than high-calorie
 
