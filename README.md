@@ -108,10 +108,15 @@ Below is the head of our league_clean dataframe.
    - Histograms of n_steps
 
 #### 1) Preparation Time
-we start with summary statistics, and note that
+we start with summary statistics, and note this a good way to distinguish between recipe's preparation time:
  - recipes taking less than 20 minutes to prepare is in first quartile
  - recipes taking 20 to 35  minutes to prepare is in second quartile
  - recipes taking 35 to 65 minutes to prepare is in third quartile
  - receipes taking longer than 65 minutes to prepare is in the forth quartile
+
+- Findings:
+  - The graph above shows that the majority of recipes take less than 65 minutes.
+
+#### 2) Number of Steps
 
 
