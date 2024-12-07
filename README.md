@@ -48,6 +48,24 @@ The central question we are interested in is: **How average rating could be dete
    - In this case, we choose to treat all ratings of 0 as missing values first.
    - 0 is likely indicate that no ratings is given, so it currently doesn't provide meaningful information about user preferences.
      
+3. Before proceeding to any column operations, we want to first deal with missing values:
+   - we start by examing which columns contains missing values
+   - then we fill missing values in columns relevant to our analysis, including
+     - nutritions
+     - rating
+     - minutes
+     - n_steps
+
+4. Among all columns relevant to our anlysis, only `rating` contains missing value.
+- We decided to use listwise imputation and probablistic imputation, see $\textbf{Imputation}$ section for justification
+  - listwise imputation: we drop all receipe that does not receive any rating
+  - probalistic imputation, we fill missing value in `rating` by drawing random sample from all ratings received by that receipe
+
+
+
+
+
+
 Below is the head of our league_clean dataframe.
 
 
