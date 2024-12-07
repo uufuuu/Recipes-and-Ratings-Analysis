@@ -211,3 +211,53 @@ And we analyzed the drawbacks of other strategies as follows
      - Filling missing values with the mean of observed values can reduce variability and introduce bias. 
   - Regression imputation.
      - As we are predicting ratings using other features, doing so will produce imputed values that are highly correlated with the predictors, which artificially inflates any relationships detected in subsequent analysis.
+
+## Framing a Prediction Problem
+- Based on above exploratory data analysis, we see that average rating of a recipes differs by
+  - complexity
+  - energy level
+  - protein level 
+- Moving forward, we will predict ratings of recipes using its key attributes, including
+  - preparation time: measured by `minutes`
+  - number of steps: measured by `n_steps`
+  - calories measured by `calories`
+  - protein level: measured by `protein(PDV)`
+ 
+## Baseline Model
+- Model Selection: Ridge Regression
+- Justification:
+  - As we includes both `minutes` and `n_steps` as our predictors, we think there might exist multicollinearity due to correlation between them.
+    - On the one hand, more number of steps might indicate longer preparation time.
+    - On the other hand, we think time might still contribute some additional infomation regarding the complexity of receipes.
+      - it could be possible that most steps are simple, so the total preparation time is shorted than one might expected simply based on the number of steps.
+- As average rating of recipes differs by complexity, we will first predict rating based on two features: `minutes` and `n_steps`
+
+### 1. Model Performance
+- **R² (Coefficient of Determination)**: `-2.074e-05`
+  - R² explains the proportion of variance in the target variable that can be explained by the predictors. A value close to 1 is ideal, while negative values indicate that the model performs worse than predicting the mean of the target variable.
+
+### Analysis
+- **R²**:
+   - An R² value of `-2.074e-05` indicates that the model performs no better than the baseline model (predicting the mean of `average_rating`), which is a strong sign that the predictors (`minutes` and `n_steps`) are not sufficiently explaining the variability in the target variable.
+
+### Evaluation
+- **No**, the current model is not good:
+  - **Low R²**: The very low (and negative) R² indicates that the model has no explanatory power.
+
+## Final Model
+### Discussion
+- In bivariate analysis, we see that average rating differs by different levels of
+  - preparation time,
+  - calories
+  - protein(PDV)
+- To capture these patterns, we want to instead use three categorical variables that we previously defined
+  - `time_involved`
+  - `calorie_level`
+  - `protein_level` 
+#### Step 1. Includes new features `time_intervals``calorie_level`, and `protein_level`
+#### Step 2. Encoded them 
+#### Step 3. Scaling
+- Once we encoded all three categorical variables, they will all range from 0 to 1.
+- As shown above, `n_steps` ranges from 1 to 20
+- Therefore, we normalize all predictors before regression
+#### Step 4. search for the best hyperparameters $\lambda$ of ridge regression 
