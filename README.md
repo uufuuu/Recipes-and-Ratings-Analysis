@@ -1,4 +1,5 @@
 # Recipes and Ratings Analysis
+authors: Becca Fu(beccafuu@umich.edu), Yuchen(Wayne) Yang(siriusyc@umich.edu)
 
 ## Project Overview
 This project is part of the Practical Data Science Course portfolio, focusing on analyzing the "Recipes and Ratings" dataset. The goal is to apply data science techniques to understand patterns and insights within a collection of recipes, along with user ratings.
