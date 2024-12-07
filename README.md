@@ -40,8 +40,19 @@ The central question we are interested in is: **How average rating could be dete
 
 
 ## Data Cleaning and Exploratory Data Analysis
-- We're interested in understanding people's decision-making process when it comes to rating recipes. 
-- Specifically, we believe this dataset allows us to explore how individuals rate recipes based on their attributes and characteristics, including the complexity of recipes, the ingredients used, and other relevant factors. 
+### Part I: Data Cleaning
+1. We start with two individual datasets, one for recipes, the other for ratings. To proceed, we need to left merge the recipes and interactions datasets together.
+   - We choose left merge because we want to ensure that all the recipes are retained in the merged dataset, even if some recipes have no ratings or interactions.
+
+2. Once we get the combined dataset, we need to deal with 0-star ratings.
+   - In this case, we choose to treat all ratings of 0 as missing values first.
+   - 0 is likely indicate that no ratings is given, so it currently doesn't provide meaningful information about user preferences.
+     
+Below is the head of our league_clean dataframe.
+
+
+
+
 
 ## Objective
 - we aim to identify key attributes that make recipes healthier and more popular. 
