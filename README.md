@@ -273,5 +273,5 @@ And we analyzed the drawbacks of other strategies as follows
 - The final model has reduced the average squared error by approximately **0.0006**.
 
 2. **Percentage Improvement:**
-  **Percentage Improvement** = 0.0005849103903597768 / 0.41092464835782266} * 100 ≈ 0.14
+  **Percentage Improvement** = 0.0005849103903597768 / 0.41092464835782266 * 100 ≈ 0.14
 - This indicates that the final model has improved the baseline performance by around **0.14%**.
