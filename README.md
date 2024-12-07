@@ -261,3 +261,21 @@ And we analyzed the drawbacks of other strategies as follows
 - As shown above, `n_steps` ranges from 1 to 20
 - Therefore, we normalize all predictors before regression
 #### Step 4. search for the best hyperparameters $\lambda$ of ridge regression 
+#### Step 5. regression process
+#### Step 6. Model Performance Comparison: Final Model vs. Baseline Model
+
+- Baseline Model Mean Squared Error:0.41092464835782266
+- Final Model Performance Mean Squared Error: 0.4103397379674629
+
+#### Improvement in Performance
+1. **Reduction in MSE:**
+   $$
+   \text{Improvement} = 0.41092464835782266 - 0.4103397379674629 = 0.0005849103903597768
+   $$
+- The final model has reduced the average squared error by approximately **0.0006**.
+
+2. **Percentage Improvement:**
+   $$
+   \text{Percentage Improvement} = \frac{0.0005849103903597768}{0.41092464835782266} \times 100 \approx 0.14\%
+   $$
+- This indicates that the final model has improved the baseline performance by around **0.14%**.
