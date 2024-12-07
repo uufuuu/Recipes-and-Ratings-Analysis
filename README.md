@@ -133,12 +133,81 @@ we continue with analyzing the distribution of steps taken.
 #### 2. Energy Provided: Calories
 1. We're also interested in calories of recipes. Specifically, we wonder if
    - there are more recipes associated with high calories, or
-   - most recipes tend to have low calories
+   - most recipes tend to have low calories.
   
 - Findings:
   - The histogram for recipe calories shows that the majority of recipes have calorie counts below 1000, with a steep decline in frequency beyond this point.
 
 - Conclusion:
   -  It appears that most recipes tend to have lower calories. The distribution is heavily skewed to the left, with the highest frequency of recipes having calorie counts below 1000.
-  -   This suggests that the majority of recipes are designed to be moderate in calorie content rather than high-calorie
+  -   This suggests that the majority of recipes are designed to be moderate in calorie content rather than high-calorie content.
 
+### Part III: Bivariate Analysis
+- Now we want to look at the statistics of pairs of columns to identify possible associations.
+- Specifically, we want to further explore what kind of recipes tend to have higher ratings,and we will investigate this question from two perspective similar to previous analysis:
+  - difficulty level
+  - calorie level
+- There are two questions to answer:
+  - Do people tend to rate simple recipe higher?
+  - Do people rate recipes with lower calorie level higher?
+- To answer these questions, we want to create three scatterplot respectively.
+  - Average_Rating vs. Preparation Time
+  - Average_Rating vs. n_steps
+  - Average_Rating vs. calorie
+
+#### Complexity
+- The scatterplot shows that the number of steps does not have a strong visible correlation with the average rating.
+- However, if we take a closer look at how ratings differ by different step ranges, we observe that
+  - receips with 6 steps or fewer or more than 14 steps tend to have higher average ratings
+
+
+    
+- Similarly, the scatterplot shows that preparation time does not have a strong visible correlation with the average rating.
+- However, if we take a closer look at how ratings differ by different step ranges, we observe that
+  - receips with less preparation time tend to have higher average ratings
+
+- Based on graph, we observe that low-calorie recipes tend to receive slightly higher average ratings compared to medium- and high-calorie recipes. This implies a preference for lower-calorie recipes, possibly due to perceived health benefits.
+
+#### Recipe Ingredients
+- Upon our investigation of original dataset, we noticed one of common tags is `low-protein`.
+- Therefore, we want to see if average rating differs by its protein(PDV)
+
+- The scatterplot shows that protein(PDV) does not have a strong visible correlation with the average rating.
+- However, if we take a closer look at how ratings differ by ranges of protein(PDV), we observe that
+  - receips with light protein level and moderate protein level tend to receive higher average ratings
+ 
+### Part IV:Interesting Aggregates
+Findings:
+1. recipes that take "less than 30 minutes"
+   - have the highest average rating of 4.64.
+   - have the lowest
+     - average calories
+     - average protein (PDV)
+     - average sugar(PDV)
+2. receips that takes "1 day or more" have the highest average calories
+
+Conclusion:
+1. Preference for Convenience:
+   - The high rating for short-preparation recipes suggests that many people value simplicity and speed.
+   - This is particularly relevant for recipe developers and food bloggers focusing on gaining popularity; offering easy and quick recipes could attract more users.
+
+2. Trade-off Between Nutrition and Time:
+    - Recipes that require more time tend to have richer nutritional content. This suggests a trade-off where users must balance convenience with the desire for more nutrient-dense meals.
+    - Consumers who have more time to cook tend to opt for more complex and nutritionally dense dishes
+
+### Part V:Imputation
+- In all relevant columns of our analysis, only the rating contains missing value. 
+- We decided to choose conditional probabilistic imputation and listwise deletion to deal with missing values. The following are justifications:
+  - Listwise Deletion:
+    - No useful information provided
+      - Recipes without any ratings do not provide any feedback about their quality or popularity. Since our analysis is focused on identifying the attributes that contribute to higher ratings, recipes with no ratings have no value in informing this relationship. They are, therefore, not useful in helping us understand the impact of recipe attributes on ratings.
+    - Avoid Bias
+      - Recipes with no ratings would require imputation based on attributes alone, which risks introducing fabricated or biased information. Since there are no user evaluations to guide this imputation, any values we add would essentially be guesses, reducing the reliability of our analysis.
+  - Conditional Probabilistic Imputation
+    - Minimizing Bias: 
+      - By drawing from the existing ratings of the same recipe, this approach minimizes the risk of introducing bias that could come from using values unrelated to the recipe itself.
+And we analyzed the drawbacks of other strategies as follows
+  - (Conditional) mean imputation:
+     - Filling missing values with the mean of observed values can reduce variability and introduce bias. 
+  - Regression imputation.
+     - As we are predicting ratings using other features, doing so will produce imputed values that are highly correlated with the predictors, which artificially inflates any relationships detected in subsequent analysis.
