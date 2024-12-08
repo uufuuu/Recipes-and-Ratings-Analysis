@@ -8,11 +8,11 @@ Authors: Becca Fu(beccafuu@umich.edu), Yuchen(Wayne) Yang(siriusyc@umich.edu)
 
 - It is split into two main CSV files.
 
-- The "recipes" data set contained metadata about recipes, providing a complete snapshot pf the recipes and their attributes, making it essential for understanding what each recipe offers. It includes information like recipes names, preparation times, tags, nutritional content, number of steps, and user-contributed descriptions.
+- The "recipes" data set contained metadata about recipes, providing a complete snapshot of the recipes and their attributes, making it essential for understanding what each recipe offers. It includes information like recipes names, preparation times, tags, nutritional content, number of steps, and user-contributed descriptions.
 
 - The "interactions" data set captures user interactions with recipes, including ratings and reviews. The data links users to the recipes they reviewed, allowing for an analysis of trends in user feedback and recipe popularity.
 
-The central question we are interested in is: **How average rating could be deterimined by key attributes of a recipe?**
+The central question we are interested in is: **How average rating could be determined by key attributes of a recipe?**
 
 - Understanding how average ratings are determined by recipe attributes has practical applications. By analyzing this data, food bloggers, culinary professionals, and recipe-sharing platforms can tailor their recipes to maximize user satisfaction. For example, a recipe with a shorter preparation time and balanced nutritional value might perform better, which can guide recipe creation and marketing strategies.
 
@@ -58,13 +58,13 @@ The central question we are interested in is: **How average rating could be dete
 
 4. Among all columns relevant to our anlysis, only `rating` contains missing value.
 - We decided to use listwise imputation and probablistic imputation, `Imputation` section for justification.
-  - listwise imputation: we drop all receipe that does not receive any rating.
-  - probalistic imputation, we fill missing value in `rating` by drawing random sample from all ratings received by that receipe.
+  - listwise imputation: we drop all recipe that does not receive any rating.
+  - probabilistic imputation, we fill missing value in `rating` by drawing random sample from all ratings received by that recipe.
 
 5. We will measure a recipe's popularity by its average rating, so we created a new column that record average rating per recipe.
    
 6. Previously, we notice that calories are stored in the `nutrition` column.
-   - `nutrition` column contains values that looks like lisst, but they are actually strings.
+   - `nutrition` column contains values that looks like list, but they are actually strings.
      - `[calories (#), total fat (PDV), sugar (PDV), sodium (PDV), protein (PDV), saturated fat (PDV), carbohydrates (PDV)]`
    - so we need to extract these information from the list-like string.
    - after that, we create columns that record them per receipe.
@@ -103,7 +103,7 @@ Below is the head of our league_clean dataframe.
 
 ### Part II: Univariate Analysis
 #### 1. Difficulty Level
-1. We are interested in difficulty level of receips. Specifically, we wonder if recipes posted are complex in general.
+1. We are interested in difficulty level of recipes. Specifically, we wonder if recipes posted are complex in general.
 2. We think two features can reflect the difficulty level, time and n_steps.
    - Intuitively, this makes sense because
      - the more complex a recipe is, the longer time it takes to prepare.
@@ -117,7 +117,7 @@ we start with summary statistics, and note this a good way to distinguish betwee
  - recipes taking less than 20 minutes to prepare is in first quartile
  - recipes taking 20 to 35  minutes to prepare is in second quartile
  - recipes taking 35 to 65 minutes to prepare is in third quartile
- - receipes taking longer than 65 minutes to prepare is in the forth quartile
+ - recipes taking longer than 65 minutes to prepare is in the forth quartile
 
 <iframe
   src="assets/recipe_prep_time.html"
@@ -306,8 +306,8 @@ And we analyzed the drawbacks of other strategies as follows
 - Justification:
   - As we includes both `minutes` and `n_steps` as our predictors, we think there might exist multicollinearity due to correlation between them.
     - On the one hand, more number of steps might indicate longer preparation time.
-    - On the other hand, we think time might still contribute some additional infomation regarding the complexity of receipes.
-      - it could be possible that most steps are simple, so the total preparation time is shorted than one might expected simply based on the number of steps.
+    - On the other hand, we think time might still contribute some additional infomation regarding the complexity of recipes.
+      - it could be possible that most steps are simple, so the total preparation time is shorter than one might expected simply based on the number of steps.
 - As average rating of recipes differs by complexity, we will first predict rating based on two features: `minutes` and `n_steps`
 
 ### 1. Model Performance
