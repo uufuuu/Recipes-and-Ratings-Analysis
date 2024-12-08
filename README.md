@@ -8,7 +8,7 @@ Authors: Becca Fu(beccafuu@umich.edu), Yuchen(Wayne) Yang(siriusyc@umich.edu)
 
 - It is split into two main CSV files.
 
-- The "recipes" data set contained metadata about recipes, providing a complete snapshot of the recipes and their attributes, making it essential for understanding what each recipe offers. It includes information like recipes names, preparation times, tags, nutritional content, number of steps, and user-contributed descriptions.
+- The "recipes" data set contained metadata about recipes, providing a complete snapshot of the recipes and their attributes, making it essential for understanding what each recipe offers. It includes information like recipe names, preparation times, tags, nutritional content, number of steps, and user-contributed descriptions.
 
 - The "interactions" data set captures user interactions with recipes, including ratings and reviews. The data links users to the recipes they reviewed, allowing for an analysis of trends in user feedback and recipe popularity.
 
