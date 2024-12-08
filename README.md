@@ -57,7 +57,7 @@ The central question we are interested in is: **How average rating could be dete
      - `n_steps`
 
 4. Among all columns relevant to our analysis, only `rating` contains missing value.
-- We decided to use listwise imputation and probablistic imputation, `Imputation` section for justification.
+- We decided to use listwise imputation and probabilistic imputation, `Imputation` section for justification.
   - listwise imputation: we drop all recipe that does not receive any rating.
   - probabilistic imputation, we fill missing value in `rating` by drawing random sample from all ratings received by that recipe.
 
