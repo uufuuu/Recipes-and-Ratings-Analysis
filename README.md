@@ -95,7 +95,7 @@ The central question we are interested in is: **How average rating could be dete
 Below is the head of our league_clean dataframe.
 
 <iframe
-  src="assets/aggregation.html"
+  src="assets/recipes_styled.html"
   width="800"
   height="600"
   frameborder="0"
