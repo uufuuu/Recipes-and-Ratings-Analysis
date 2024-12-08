@@ -94,6 +94,12 @@ The central question we are interested in is: **How average rating could be dete
 
 Below is the head of our league_clean dataframe.
 
+<iframe
+  src="assets/aggregation.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 
 ### Part II: Univariate Analysis
@@ -256,13 +262,6 @@ we continue with analyzing the distribution of steps taken.
 ></iframe>
  
 ### Part IV:Interesting Aggregates
-
-<iframe
-  src="assets/aggregation.html"
-  width="800"
-  height="600"
-  frameborder="0"
-></iframe>
 
 Findings:
 1. recipes that take "less than 30 minutes"
