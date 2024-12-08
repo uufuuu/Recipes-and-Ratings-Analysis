@@ -61,10 +61,10 @@ The central question we are interested in is: **How average rating could be dete
   - listwise imputation: we drop all recipe that does not receive any rating.
   - probabilistic imputation, we fill missing value in `rating` by drawing random sample from all ratings received by that recipe.
 
-5. We will measure a recipe's popularity by its average rating, so we created a new column that record average rating per recipe.
+5. We will measure a recipe's popularity by its average rating, so we created a new column that records average rating per recipe.
    
 6. Previously, we notice that calories are stored in the `nutrition` column.
-   - `nutrition` column contains values that looks like list, but they are actually strings.
+   - `nutrition` column contains values that looks like lists, but they are actually strings.
      - `[calories (#), total fat (PDV), sugar (PDV), sodium (PDV), protein (PDV), saturated fat (PDV), carbohydrates (PDV)]`
    - so we need to extract these information from the list-like string.
    - after that, we create columns that record them per receipe.
@@ -76,7 +76,7 @@ The central question we are interested in is: **How average rating could be dete
      - `1-day-or-more`
 
 8. from now on, we will only focus on relevant columns, including
-   -`averge_rating`
+   -`average_rating`
    - `minutes`
    - `time involved`
    - `calories`
@@ -108,7 +108,7 @@ Below is the head of our league_clean dataframe.
    - Intuitively, this makes sense because
      - the more complex a recipe is, the longer time it takes to prepare.
      - the more complex a recipe is, the more steps it involves.
-4. To get some insights, we decided to draw two histograms to get some insights.
+3. To get some insights, we decided to draw two histograms to get some insights.
    - Histograms of Time
    - Histograms of n_steps
 
@@ -306,7 +306,7 @@ And we analyzed the drawbacks of other strategies as follows
 - Justification:
   - As we includes both `minutes` and `n_steps` as our predictors, we think there might exist multicollinearity due to correlation between them.
     - On the one hand, more number of steps might indicate longer preparation time.
-    - On the other hand, we think time might still contribute some additional infomation regarding the complexity of recipes.
+    - On the other hand, we think time might still contribute some additional information regarding the complexity of recipes.
       - it could be possible that most steps are simple, so the total preparation time is shorter than one might expected simply based on the number of steps.
 - As average rating of recipes differs by complexity, we will first predict rating based on two features: `minutes` and `n_steps`
 
