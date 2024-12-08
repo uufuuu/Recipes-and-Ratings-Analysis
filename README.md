@@ -353,7 +353,6 @@ And we analyzed the drawbacks of other strategies as follows
 2. **Percentage Improvement:**
   **Percentage Improvement** = 0.0005849103903597768 / 0.41092464835782266 * 100 ≈ 0.14
 - This indicates that the final model has improved the baseline performance by around **0.14%**.
-# Step 6. Model Performance Comparison: Final Model vs. Baseline Model
 
 - **Baseline Model Mean Squared Error**: 0.41092464835782266
 - **Final Model Performance Mean Squared Error**: 0.4103397379674629
