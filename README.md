@@ -94,12 +94,13 @@ The central question we are interested in is: **How average rating could be dete
 
 Below is the head of our league_clean dataframe.
 
-<iframe
-  src="assets/recipes_styled.html"
-  width="800"
-  height="600"
-  frameborder="0"
-></iframe>
+|    |     id |   minutes |   calories |   n_steps |   total fat(PDV) |   sugar(PDV) |   sodium(PDV) |   protein(PDV) |   saturated fat(PDV) |   carbohydrates(PDV) |   average_rating | time involved        |
+|---:|-------:|----------:|-----------:|----------:|-----------------:|-------------:|--------------:|---------------:|---------------------:|---------------------:|-----------------:|:---------------------|
+|  0 | 275022 |        50 |      386.1 |        11 |               34 |            7 |            24 |             41 |                   62 |                    8 |                3 | 0.5 hour to 4 hours  |
+|  1 | 275024 |        55 |      377.1 |         6 |               18 |          208 |            13 |             13 |                   30 |                   20 |                3 | 0.5 hour to 4 hours  |
+|  2 | 275026 |        45 |      326.6 |         7 |               30 |           12 |            27 |             37 |                   51 |                    5 |                3 | 0.5 hour to 4 hours  |
+|  3 | 275030 |        45 |      577.7 |        11 |               53 |          149 |            19 |             14 |                   67 |                   21 |                5 | 0.5 hour to 4 hours  |
+|  4 | 275032 |        25 |      386.9 |         8 |                0 |          347 |             0 |              1 |                    0 |                   33 |                5 | less than 30 minutes |
 
 ### Part II: Univariate Analysis
 #### 1. Difficulty Level
@@ -112,7 +113,7 @@ Below is the head of our league_clean dataframe.
    - Histograms of Time
    - Histograms of n_steps
 
-##### 1) Preparation Time
+##### Preparation Time
 we start with summary statistics, and note this a good way to distinguish between recipe's preparation time:
  - recipes taking less than 20 minutes to prepare is in first quartile
  - recipes taking 20 to 35  minutes to prepare is in second quartile
@@ -128,7 +129,7 @@ we start with summary statistics, and note this a good way to distinguish betwee
 - Findings:
   - The graph above shows that the majority of recipes take less than 65 minutes.
 
-##### 2) Number of Steps
+##### Number of Steps
 we continue with analyzing the distribution of steps taken.
  - recipes taking within 6 steps to prepare is in first quartile
  - recipes taking 7-9 steps to prepare is in second quartile
@@ -248,13 +249,16 @@ we continue with analyzing the distribution of steps taken.
   height="600"
   frameborder="0"
 ></iframe>
-### Part IV:Interesting Aggregates
-<iframe
-  src="assets/aggregation_styled.html"
-  width="800"
-  height="600"
-  frameborder="0"
-></iframe>
+
+### Part IV: Interesting Aggregates
+
+| Time Involved         | Average Rating | Calories  | Total Fat (PDV) | Sugar (PDV) | Sodium (PDV) | Carbohydrates (PDV) | Protein (PDV) |
+|------------------------|----------------|-----------|------------------|-------------|--------------|---------------------|---------------|
+| Less than 30 minutes  | 4.64466        | 345.862   | 26.4346          | 57.0829     | 24.8203      | 11.0133             | 25.2582       |
+| 0.5 hour to 4 hours   | 4.61538        | 491.321   | 37.2619          | 76.4203     | 30.8117      | 15.9859             | 37.9524       |
+| 1-day-or-more         | 4.55493        | 513.034   | 37.1742          | 77.761      | 46.7199      | 14.4785             | 53.9995       |
+
+
 Findings:
 1. recipes that take "less than 30 minutes"
    - have the highest average rating of 4.64.
@@ -273,7 +277,7 @@ Conclusion:
     - Recipes that require more time tend to have richer nutritional content. This suggests a trade-off where users must balance convenience with the desire for more nutrient-dense meals.
     - Consumers who have more time to cook tend to opt for more complex and nutritionally dense dishes
 
-### Part V:Imputation
+### Part V: Imputation Strategy
 - In all relevant columns of our analysis, only the rating contains missing value. 
 - We decided to choose conditional probabilistic imputation and listwise deletion to deal with missing values. The following are justifications:
   - Listwise Deletion:
@@ -302,28 +306,40 @@ And we analyzed the drawbacks of other strategies as follows
   - protein level: measured by `protein(PDV)`
  
 ## Baseline Model
-- Model Selection: Ridge Regression
-- Justification:
-  - As we includes both `minutes` and `n_steps` as our predictors, we think there might exist multicollinearity due to correlation between them.
-    - On the one hand, more number of steps might indicate longer preparation time.
-    - On the other hand, we think time might still contribute some additional information regarding the complexity of recipes.
-      - it could be possible that most steps are simple, so the total preparation time is shorter than one might expected simply based on the number of steps.
-- As average rating of recipes differs by complexity, we will first predict rating based on two features: `minutes` and `n_steps`
+### Model Description and Evaluation
 
-### 1. Model Performance
-- **R² (Coefficient of Determination)**: `-2.074e-05`
-  - R² explains the proportion of variance in the target variable that can be explained by the predictors. A value close to 1 is ideal, while negative values indicate that the model performs worse than predicting the mean of the target variable.
+#### 1. Model Description
+- **Model Type:** Ridge Regression
+- **Predictors (Features):** Two quantitative features:
+  -  `minutes`: Total preparation time for a recipe (quantitative).
+  -  `n_steps`: Number of steps required to prepare a recipe (quantitative).
+- **Target Variable:** `average_rating` (quantitative).
 
-### Analysis
-- **R²**:
-   - An R² value of `-2.074e-05` indicates that the model performs no better than the baseline model (predicting the mean of `average_rating`), which is a strong sign that the predictors (`minutes` and `n_steps`) are not sufficiently explaining the variability in the target variable.
+#### 2. Features Summary
+- **Quantitative Features:** 
+  - `minutes`
+  - `n_steps`
+- **Ordinal Features:** None.
+- **Nominal Features:** None.
 
-### Evaluation
-- **No**, the current model is not good:
-  - **Low R²**: The very low (and negative) R² indicates that the model has no explanatory power.
+#### 3. Data Preparation
+- No categorical or ordinal features required encoding since all features were numerical.
+- Data was split into training and test sets using an 80-20 split.
+- Ridge regression was used to mitigate potential multicollinearity between `minutes` and `n_steps`.
+
+#### 4. Model Performance
+- **Mean Squared Error (MSE):** ~0.41
+- **R² (Coefficient of Determination):** -0.00002074
+
+#### 5. Evaluation of Model Quality
+The current model is **not good** for the following reasons:
+- **Low Explanatory Power:** The R² value is negative, indicating that the model performs worse than a simple mean baseline (i.e., predicting the average rating for all recipes).
+- **Limited Predictors:** The two predictors (`minutes` and `n_steps`) are insufficient to capture the variability in recipe ratings. Additional features such as ingredients, calorie levels, or protein content might better explain the target variable.
+- **Potential Multicollinearity:** Although mitigated with Ridge Regression, the strong correlation between `minutes` and `n_steps` may still obscure the contribution of each predictor.
+
 
 ## Final Model
-### Discussion
+### 1. Predictor Re-selection
 - In bivariate analysis, we see that average rating differs by different levels of
   - preparation time,
   - calories
@@ -332,18 +348,26 @@ And we analyzed the drawbacks of other strategies as follows
   - `time_involved`
   - `calorie_level`
   - `protein_level` 
-#### Step 1. Includes new features `time_intervals``calorie_level`, and `protein_level`
-#### Step 2. Encoded them 
-#### Step 3. Scaling
-- Once we encoded all three categorical variables, they will all range from 0 to 1.
-- As shown above, `n_steps` ranges from 1 to 20
-- Therefore, we normalize all predictors before regression
-#### Step 4. search for the best hyperparameters $\lambda$ of ridge regression 
-#### Step 5. regression process
-#### Step 6. Model Performance Comparison: Final Model vs. Baseline Model
+- These features are aligned with the data-generating process as they directly relate to the characteristics users consider when rating recipes.
 
-- Baseline Model Mean Squared Error:0.41092464835782266
-- Final Model Performance Mean Squared Error: 0.4103397379674629
+### 2. Modeling Algorithm and Hyperparameter Selection
+- **Algorithm Chosen:** Ridge Regression
+  - Ridge regression was chosen to mitigate multicollinearity and ensure stable coefficient estimation given the inclusion of potentially correlated features.
+  
+- **Best Hyperparameters:** 
+  - Regularization strength (`alpha`): **100**
+  - Determined using **GridSearchCV** with cross-validation (`cv=5`), optimizing for the lowest mean squared error.
+
+- **Pipeline Setup:**
+  - A **ColumnTransformer** was used for preprocessing:
+    - Numerical features (`n_steps`) were scaled using `StandardScaler`.
+    - Categorical features (`time_involved`, `calorie_level`, `protein_level`) were encoded using `OneHotEncoder`.
+  - Combined preprocessing and regression in a `Pipeline` to streamline model building.
+
+### 3. Performance Comparison
+
+- **Baseline Model MSE**:0.41092464835782266
+- **Final Model MSE**: 0.4103397379674629
 
 #### Improvement in Performance
 1. **Reduction in MSE:**
@@ -351,8 +375,6 @@ And we analyzed the drawbacks of other strategies as follows
 - The final model has reduced the average squared error by approximately **0.0006**.
 
 2. **Percentage Improvement:**
-  **Percentage Improvement** = 0.0005849103903597768 / 0.41092464835782266 * 100 ≈ 0.14
-- This indicates that the final model has improved the baseline performance by around **0.14%**.
+-  **Percentage Improvement** = 0.0005849103903597768 / 0.41092464835782266 * 100 ≈ 0.14
+    - This indicates that the final model has improved the baseline performance by around **0.14%**.
 
-- **Baseline Model Mean Squared Error**: 0.41092464835782266
-- **Final Model Performance Mean Squared Error**: 0.4103397379674629
