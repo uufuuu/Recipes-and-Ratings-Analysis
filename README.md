@@ -264,7 +264,7 @@ we continue with analyzing the distribution of steps taken.
 ### Part IV:Interesting Aggregates
 
 <iframe
-  src="assets/aggregation(real).html"
+  src="assets/aggregation_styled.html"
   width="800"
   height="600"
   frameborder="0"
