@@ -263,6 +263,13 @@ we continue with analyzing the distribution of steps taken.
  
 ### Part IV:Interesting Aggregates
 
+<iframe
+  src="assets/aggregation(real).html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 Findings:
 1. recipes that take "less than 30 minutes"
    - have the highest average rating of 4.64.
